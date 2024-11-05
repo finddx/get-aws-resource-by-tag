@@ -8,7 +8,9 @@ inputs:
   tag_filters:
     description: The full tag_filters value search.
     required: true
-
+  aws_region:
+    description: The AWS region where to search the resource
+    required: true
 outputs:
   resource_id:
     description: The full arn of the resource. Probably needs post processing.
@@ -17,13 +19,13 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - name: Get bucket name via tags
+    - name: Get the resource
       id: resource
       run: |
         echo "ID=$(aws resourcegroupstaggingapi get-resources \
           ${{inputs.tag_filters}} \
           --resource-type-filters '${{inputs.resource_type}}' \
-          --region ${{secrets.AWS_REGION}} \
+          --region ${{inputs.AWS_REGION}} \
           --query 'ResourceTagMappingList[0].ResourceARN' \
           --output text )" \
           >> "$GITHUB_OUTPUT"
