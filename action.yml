@@ -1,4 +1,4 @@
-name: Reusable workflow for deploying the ECS backend static files
+name: Composite action to search AWS resources by tag.
 description: Use the aws cli to identify resources, providing a tag filter value.
 
 inputs:
@@ -9,7 +9,7 @@ inputs:
     description: The full tag_filters value search.
     required: true
   aws_region:
-    description: The AWS region where to search the resource
+    description: The AWS region where to search the resource.
     required: true
 outputs:
   resource_id:
