@@ -25,7 +25,7 @@ runs:
         echo "ID=$(aws resourcegroupstaggingapi get-resources \
           ${{inputs.tag_filters}} \
           --resource-type-filters '${{inputs.resource_type}}' \
-          --region ${{inputs.AWS_REGION}} \
+          --region ${{inputs.aws_region}} \
           --query 'ResourceTagMappingList[0].ResourceARN' \
           --output text )" \
           >> "$GITHUB_OUTPUT"
